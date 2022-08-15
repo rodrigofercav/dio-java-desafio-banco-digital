@@ -63,8 +63,14 @@ public class Banco {
 
     public void listarClientes() {
         System.out.println("\n*** LISTA DE CLIENTES ***");
+
         for (Cliente cliente : listaClientes)
             System.out.println("Nome: "+ cliente.getNome()+ " - CPF: "+ cliente.getCpf());
+        
         System.out.println("\n");
+    }
+
+    public ArrayList<Conta> getAllContas() {
+        return listaContas;
     }
 }

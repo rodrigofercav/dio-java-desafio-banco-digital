@@ -1,5 +1,7 @@
 package br.dio.desafiojava.bancodigital.entidades;
 
+import java.util.ArrayList;
+
 import br.dio.desafiojava.bancodigital.enums.TipoConta;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -21,14 +23,22 @@ public class Cliente {
     public String toString() {
         String str = "";
         str += "\n- Dados do Cliente:";
-        str += "\nNome: "+ this.nome;
-        str += "\nE-mail: "+ this.email;
-        str += "\nSexo: "+ this.sexo;
+        str += "\nNome: " + this.nome;
+        str += "\nE-mail: " + this.email;
+        str += "\nSexo: " + this.sexo;
 
         return str;
     }
-    
+
     public Conta getConta(TipoConta tipoConta) {
-    	return null;
+        ArrayList<Conta> contas = this.banco.getAllContas();
+
+        for (Conta contaIterator : contas) {
+            if (contaIterator.getCliente().getCpf().equals(this.getCpf())
+                    && contaIterator.getTipoConta(contaIterator.getClass()).equals(tipoConta.getValor()))
+                return contaIterator;
+        }
+
+        return null;
     }
 }

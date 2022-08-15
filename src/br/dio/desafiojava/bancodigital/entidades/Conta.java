@@ -20,10 +20,11 @@ public abstract class Conta implements IConta {
     }
 
     protected void imprimirExtrato(String tipoConta) {
-        System.out.println("*** Extrato da "+ tipoConta +" ***");
+        System.out.println("\n*** Extrato da "+ tipoConta +" ***");
+        System.out.println("Cliente: " + this.getCliente().getNome());
         System.out.println("Agência: " + this.agencia);
         System.out.println("Número.: " + this.numero);
-        System.out.println("Saldo..: " + this.saldo);
+        System.out.printf("Saldo..: %.2f\n", this.saldo);
     }
     
     protected String getTipoConta(Object conta) {

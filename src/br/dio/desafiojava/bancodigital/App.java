@@ -2,6 +2,9 @@ package br.dio.desafiojava.bancodigital;
 
 import br.dio.desafiojava.bancodigital.entidades.Banco;
 import br.dio.desafiojava.bancodigital.entidades.Cliente;
+import br.dio.desafiojava.bancodigital.entidades.Conta;
+import br.dio.desafiojava.bancodigital.entidades.ContaCorrente;
+import br.dio.desafiojava.bancodigital.entidades.ContaPoupanca;
 import br.dio.desafiojava.bancodigital.enums.Sexo;
 import br.dio.desafiojava.bancodigital.enums.TipoConta;
 
@@ -29,5 +32,33 @@ public class App {
         banco.listarClientes();
 
         //operacoes bancárias
+        ContaCorrente contaRodrigoCC = (ContaCorrente) rodrigo.getConta(TipoConta.CC);
+        contaRodrigoCC.depositar(1000);
+
+        ContaPoupanca contaRodrigoCP = (ContaPoupanca) rodrigo.getConta(TipoConta.CP);
+        contaRodrigoCP.depositar(2500);
+        
+        Conta contaVinicius = vinicius.getConta(TipoConta.CP);
+        contaRodrigoCC.transferir(contaVinicius, (contaRodrigoCC.getSaldo() / 2));
+
+        Conta contaKarina = karina.getConta(TipoConta.CC);
+        contaRodrigoCP.transferir(contaKarina, (contaRodrigoCP.getSaldo() / 3));
+
+        System.out.println("\n*** SALDOS APÓS OPERAÇÕES INICIAIS ***");
+        contaRodrigoCC.imprimirExtrato();
+        contaRodrigoCP.imprimirExtrato();
+        contaVinicius.imprimirExtrato();
+        contaKarina.imprimirExtrato();
+
+        //grandes depositos
+        contaRodrigoCC.depositar(5000);
+        contaVinicius.depositar(10000);
+        contaKarina.depositar(10000);
+
+        System.out.println("\n\n*** SALDOS APÓS OPERAÇÕES DEPOSITOS ***");
+        contaRodrigoCC.imprimirExtrato();
+        contaRodrigoCP.imprimirExtrato();
+        contaVinicius.imprimirExtrato();
+        contaKarina.imprimirExtrato();
     }
 }
